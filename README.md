@@ -38,4 +38,4 @@ This is an unofficial work, use at your own risk.
 
 ## License
 
-Unlicensed aka Public Domain.
+[Unlicensed](LICENSE) aka Public Domain.
