@@ -14,7 +14,7 @@ This is a simple script for downloading instagram posts.
 
 - Navigate the downloaded folder on the command line.
 
-- Then copy the instagram post url that you want to download.
+- Then copy(ctrl + c) the instagram post url that you want to download.
 
 Type:
 ```shell
@@ -30,5 +30,12 @@ instagram_downloader.py -p C:/Users/{Username}/Desktop
 
 ## Note!
 
-The script depends on the page source code. So if Instagram decides to change their tag names this script will not work until i update the regular expressions.
+The script depends on the page source code. So if Instagram decides to change their tag names this script will not work until the regular expressions updated.
 
+## Disclaimer
+
+This is an unofficial work, use at your own risk.
+
+## License
+
+Unlicensed aka Public Domain.
