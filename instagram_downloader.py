@@ -6,7 +6,6 @@ import pathlib
 import json
 import urllib
 import urllib.request
-from urllib.request import urlopen, urlretrieve
 
 # Regular Expressions for retrieving data from page source code.
 PHOTOS_EXPRESSION = r'"display_resources":(.*?)]'
