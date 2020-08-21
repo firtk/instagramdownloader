@@ -5,6 +5,7 @@ import argparse
 import pathlib
 import json
 import urllib
+import urllib.request
 from urllib.request import urlopen, urlretrieve
 
 # Regular Expressions for retrieving data from page source code.
@@ -26,7 +27,7 @@ def clipboard_text():
 
 def get_page_source(url):
     # Returns page source code as a string.
-    with urlopen(url, timeout=5) as response:
+    with urllib.request.urlopen(url, timeout=5) as response:
         source = response.read()
     source = str(source)
 
@@ -45,7 +46,7 @@ def download_photos(url, path):
     img_urls = [urllib.parse.unquote(url).encode().decode('unicode_escape') for url in img_urls] # Decode special characters such as \u0026 => &
     img_urls = dict.fromkeys(img_urls).keys() # Remove occurence but keep order. # set() not used because it is disorders the list.
     for i, url in enumerate(img_urls, start=1):
-        with urlopen(url, timeout=5) as response:
+        with urllib.request.urlopen(url, timeout=5) as response:
             page_source = response.read()
         with open(str(pathlib.PurePath(path, '{}_photo_{}.jpeg'.format(username, i))), 'wb') as img_file:
             img_file.write(page_source)
@@ -61,14 +62,18 @@ def download_video(url, path):
     content = re.search(CONTENT_EXPRESSION, page_source).group(0)
     username = re.search(USERNAME_EXPRESSION, content).group(0)[1:-1]
     video_url = re.search(VIDEO_EXPRESSION, page_source).group(1)
-    video_url = urllib.parse.unquote(video_url).encode().decode('unicode_escape') # Decode special characters such as \u0026 => &
+    video_url_decoded = urllib.parse.unquote(video_url).encode().decode('unicode_escape') # Decode special characters such as \u0026 => &
     if path:
         save_path = str(pathlib.PurePath(path, '{}_video.mp4'.format(username)))
     else:
         save_path = '{}_video.mp4'.format(username)
 
     print("Download starting...")
-    urlretrieve(video_url, save_path)
+    try:
+        urllib.request.urlretrieve(video_url_decoded, save_path)
+    except Exception as err:
+        print(err)
+        urllib.request.urlretrieve(video_url, save_path)
 
     os.startfile(save_path)
 
