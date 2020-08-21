@@ -30,7 +30,7 @@ instagram_downloader.py -p C:/Users/{Username}/Desktop
 
 ## Note!
 
-The script depends on the page source code. So if Instagram decides to change their tag names this script will not work until the regular expressions updated.
+The script depends on the page source code. So if Instagram decides to change their tag names or source code generation method this script will not work until the script update.
 
 ## Disclaimer
 
