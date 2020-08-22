@@ -1,6 +1,6 @@
 # Instagram Downloader
 
-This is a simple script for downloading instagram posts.
+This is a simple script for downloading instagram posts. Just copy the url of the post then run the script.
 
 ## Installing
 
